@@ -21,8 +21,8 @@
 
 
 
-
 from ast_engine.analyzer import analyze_code
+from ai_engine.detection import detect_issues
 from gpt_engine.prompt_builder import build_gpt_prompt
 from gpt_engine.reviewer import get_gpt_review
 
@@ -30,14 +30,15 @@ with open("test_code.py") as f:
     code = f.read()
 
 analysis_result = analyze_code(code)
+issues = detect_issues(code)
+
+analysis_result["issues"] = issues  # 🔥 KEY LINE
 
 prompt = build_gpt_prompt(code, analysis_result)
-
 gpt_feedback = get_gpt_review(prompt)
 
 print("===== GPT CODE REVIEW =====\n")
 print(gpt_feedback)
-
 
 
 # import os
@@ -45,3 +46,4 @@ print(gpt_feedback)
 
 # load_dotenv()
 # print(os.getenv("OPENAI_API_KEY"))
+
