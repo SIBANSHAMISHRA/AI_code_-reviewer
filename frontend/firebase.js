@@ -3,7 +3,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC5DeLXvi86gnjqDpIxzjBdRzQXbNm0DUA",
+  apiKey: "",
   authDomain: "ai-code-reviewer-605b0.firebaseapp.com",
   projectId: "ai-code-reviewer-605b0",
   storageBucket: "ai-code-reviewer-605b0.firebasestorage.app",
