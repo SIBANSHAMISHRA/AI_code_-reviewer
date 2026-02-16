@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Statistics from "./Pages/Statistics";
+
 
 import Dashboard from "./Pages/Dashboard";
 import History from "./Pages/History";
@@ -23,6 +25,12 @@ function App() {
           path="/history"
           element={<History history={history} />}
         />
+
+        <Route
+  path="/statistics"
+  element={<Statistics history={history} />}
+/>
+
       </Routes>
     </BrowserRouter>
   );

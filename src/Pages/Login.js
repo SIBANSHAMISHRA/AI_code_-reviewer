@@ -1,22 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { loginUser } from "../Services/api";
+
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+ const handleLogin = async () => {
+  try {
+    const response = await loginUser({
+      email,
+      password
+    });
+
     navigate("/dashboard");
-  };
+
+  } catch (error) {
+    alert("Login failed");
+  }
+};
+
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={styles.title}>Welcome Back </h2>
 
-        <form onSubmit={handleLogin} style={styles.form}>
+        <form
+  onSubmit={(e) => {
+    e.preventDefault();
+    handleLogin();
+  }}
+>
+
           <input
             type="email"
             placeholder="Enter your email"
@@ -58,19 +77,21 @@ export default Login;
 
 const styles = {
   container: {
-    minHeight: "100vh",
+    height: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#03060f",
+    background: "#0f172a",
+    fontFamily: "Arial, sans-serif"
   },
 
   card: {
-    backgroundColor: "#0f172a",
+    width: "350px",
     padding: "40px",
     borderRadius: "12px",
-    width: "350px",
-    boxShadow: "0 0 20px rgba(0,0,0,0.5)",
+    background: "#020617",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+    textAlign: "center"
   },
 
   title: {
@@ -85,23 +106,29 @@ const styles = {
   },
 
   input: {
+   width: "100%",          // ⭐ important for center alignment
     padding: "12px",
     marginBottom: "15px",
-    borderRadius: "6px",
+    borderRadius: "8px",
     border: "1px solid #334155",
-    backgroundColor: "#1e293b",
+    background: "#020617",
     color: "#fff",
-    fontSize: "14px",
+    outline: "none",
+    display: "block"
+
   },
 
   button: {
+    width: "60%",           // ⭐ button center size
     padding: "12px",
-    backgroundColor: "#2563eb",
-    color: "#fff",
+    borderRadius: "8px",
     border: "none",
-    borderRadius: "6px",
+    background: "#2563eb",
+    color: "#fff",
+    fontWeight: "bold",
     cursor: "pointer",
-    fontWeight: "600",
+    margin: "15px auto 0 auto",   // ⭐ centers button horizontally
+    display: "block"
   },
 
   footerText: {

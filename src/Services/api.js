@@ -8,10 +8,28 @@ const api = axios.create({
 });
 
 // ✅ NAMED EXPORT
-export const reviewCode = async (code) => {
+export const reviewCode = async (code, language) => {
   const response = await api.post("/review", {
-    code: code,
+    code,
+    language,
   });
   return response.data;
 };
 
+export const getSuggestion = async (code, type) => {
+  const response = await api.post("/suggest", {
+    code,
+    type,
+  });
+  return response.data;
+};
+
+export const signupUser = async (userData) => {
+  const response = await api.post("/signup", userData);
+  return response.data;
+};
+
+export const loginUser = async (userData) => {
+  const response = await api.post("/login", userData);
+  return response.data;
+};
